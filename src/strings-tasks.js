@@ -106,7 +106,7 @@ removeLeadingAndTrailingWhitespaces('cat ');
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
 function removeLeadingWhitespaces(value) {
-  return value.trimLeft();
+  return value.trimStart();
 }
 removeLeadingWhitespaces('cat ');
 
@@ -122,7 +122,7 @@ removeLeadingWhitespaces('cat ');
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
 function removeTrailingWhitespaces(value) {
-  return value.trimRight();
+  return value.trimEnd();
 }
 removeTrailingWhitespaces('cat ');
 /**
@@ -138,9 +138,10 @@ removeTrailingWhitespaces('cat ');
  *   repeatString('', 3) => ''
  *   repeatString('abc', -2) => ''
  */
-function repeatString(/* str, times */) {
-  throw new Error('Not implemented');
+function repeatString(str, times) {
+  return str.repeat(times);
 }
+repeatString('A', 5);
 
 /**
  * Remove the first occurrence of a substring from a string.
@@ -186,9 +187,14 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  let sum = 0;
+  for (let i = 0; i <= str.length - 1; i += 1) {
+    sum = str.charCodeAt(i) + sum;
+  }
+  return sum;
 }
+sumOfCodes('12345');
 
 /**
  * Checks if a string starts with a specific substring.
@@ -201,9 +207,10 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr);
 }
+startsWith('Hello World', 'World');
 
 /**
  * Checks if a string ends with a specific substring.
@@ -216,10 +223,10 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr);
 }
-
+endsWith('Hello World', 'World');
 /**
  * Returns a time string in the "mm:ss" format.
  *
@@ -247,9 +254,10 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
+reverseString('abcdef');
 
 /**
  * Returns a string with characters in alphabetical order.
@@ -278,9 +286,10 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
+containsSubstring('Hello, World!', 'World');
 
 /**
  * Returns the number of vowels in the string.

@@ -305,9 +305,11 @@ containsSubstring('Hello, World!', 'World');
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const matches = str.match(/[aeiouyAEIOUY]/g);
+  return matches ? matches.length : 0;
 }
+countVowels('apple');
 
 /**
  * Returns true if the string is a palindrome; otherwise false.

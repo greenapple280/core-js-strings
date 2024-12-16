@@ -158,9 +158,15 @@ repeatString('A', 5);
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const index = str.indexOf(value);
+  if (index !== -1) {
+    return str.slice(0, index) + str.slice(index + value.length);
+  }
+  return str;
 }
+
+removeFirstOccurrences('ABABAB', 'BA');
 
 /**
  * Remove the last occurrence of a substring from a string.
@@ -174,9 +180,16 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const index = str.lastIndexOf(value);
+  // If the substring is found, remove it
+  if (index !== -1) {
+    return str.slice(0, index) + str.slice(index + value.length);
+  }
+  return str;
 }
+
+removeLastOccurrences('To be or not to be', 'be');
 
 /**
  * Calculate the sum of character codes of the given string.
@@ -369,9 +382,13 @@ findLongestWord('No words here');
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  return str
+    .split(' ')
+    .map((word) => word.split('').reverse().join(''))
+    .join(' ');
 }
+reverseWords('Hello World');
 
 /**
  * Inverts the case of each character in the given string.
@@ -401,9 +418,11 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
+
+getStringFromTemplate('John', 'Doe');
 
 /**
  * Extracts a name from template string 'Hello, First_Name Last_Name!'.
@@ -430,9 +449,11 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
+
+unbracketTag('<a>');
 
 /**
  * Extracts e-mails from single string with e-mails list delimited by semicolons
@@ -449,9 +470,11 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
+
+extractEmails('info@gmail.com');
 
 /**
  * Encode specified string with ROT13 cipher

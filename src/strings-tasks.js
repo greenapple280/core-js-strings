@@ -41,9 +41,11 @@ getStringLength('b');
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
+
+isString(null);
 
 /**
  * Returns the result of concatenation of two strings.
@@ -139,6 +141,7 @@ removeTrailingWhitespaces('cat ');
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
+  if (times < 0) return '';
   return str.repeat(times);
 }
 repeatString('A', 5);
@@ -188,11 +191,8 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
-  let sum = 0;
-  for (let i = 0; i <= str.length - 1; i += 1) {
-    sum = str.charCodeAt(i) + sum;
-  }
-  return sum;
+  const newStr = str || '';
+  return newStr.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
 }
 sumOfCodes('12345');
 
@@ -240,9 +240,13 @@ endsWith('Hello World', 'World');
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  const min = String(minutes).padStart(2, '0');
+  const sec = String(seconds).padStart(2, '0');
+  return `${min}:${sec}`;
 }
+
+formatTime(1, 15);
 
 /**
  * Returns a string in reverse order.
@@ -270,9 +274,11 @@ reverseString('abcdef');
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
+
+orderAlphabetically('webmaster');
 
 /**
  * Checks if a given string contains a specified substring.
@@ -324,9 +330,12 @@ countVowels('apple');
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const normalizedStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return normalizedStr === normalizedStr.split('').reverse().join('');
 }
+
+isPalindrome('No lemon, no melon');
 
 /**
  * Find the longest word in the sentence. If there are multiple longest words,
@@ -340,9 +349,15 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  return sentence
+    .split(' ') // Split the sentence into words
+    .reduce((longest, currentWord) => {
+      return currentWord.length > longest.length ? currentWord : longest;
+    }, '');
 }
+
+findLongestWord('No words here');
 
 /**
  * Returns the string where each word is reversed.
